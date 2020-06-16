@@ -4,17 +4,15 @@ window.onload = function() {
 
 const newArray = [];
 function get(){
-
     fetch('https://randomuser.me/api/')
       .then( response => response.json())
         .then(data => {
             newArray.push(data.results["0"])
             console.log(newArray);
         })
-  
         document.getElementById("contacts").innerHTML = " ";
 
-        // list out users by name and picture
+// list users name and picture
         newArray.map(person => {
             console.log(person);
             let createLi = document.createElement("li");
@@ -27,7 +25,7 @@ function get(){
         });
 }
 
-// getting multiple users in one array
+//multiple users one array
 function allUsers() {
     let multipleArray = null;
     fetch('https://randomuser.me/api/?results=5')
@@ -39,8 +37,6 @@ function allUsers() {
         let createAllLi = document.createElement("li");
         let allContactsList = document.getElementById("allContacts");
         let allImage = document.createElement("img");
-        
-// this button will give you more information about the contact
         let button = document.createElement('button');
         button.addEventListener("click",(e) => {
             let textBox = document.createElement('p');
@@ -52,14 +48,11 @@ function allUsers() {
         createAllLi.appendChild(allImage);
         createAllLi.appendChild(document.createTextNode(person.name.first + " " + person.name.last));
         createAllLi.appendChild(button);
-
-        let buttonText = document.createTextNode("More Info");
-  
+        let buttonText = document.createTextNode("click this to creep on em");
         button.appendChild(buttonText);
         allContactsList.append(createAllLi);
     })
       console.log(multipleArray);
     })
-
     document.getElementById("allContacts").innerHTML = " ";
 }
